@@ -70,6 +70,12 @@ export class UsersComponent implements OnInit {
       map((value) => this._statusfilter(value))
     );
 
+    // this.assetsFilteredOptions = this.userForm.get("allowed_assets").valueChanges
+    // 	.pipe(
+    // 		startWith(''),
+    // 		map(value => this._assetsfilter(value))
+    // 	);
+
     this.assetsFilteredOptions = this.userForm
       .get('allowed_assets')
       .valueChanges.pipe(
@@ -131,6 +137,7 @@ export class UsersComponent implements OnInit {
     this.fruitInput.nativeElement.value = '';
     this.allowed_assets.setValue(null);
   }
+
   onSubmit() {
     console.log(this.userForm);
   }
