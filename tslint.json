@@ -74,7 +74,13 @@
       ]
     },
     "variable-name": {
-      "options": ["ban-keywords", "check-format", "allow-pascal-case"]
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "allow-pascal-case",
+        true,
+        "allow-leading-underscore"
+      ]
     },
     "whitespace": {
       "options": [
