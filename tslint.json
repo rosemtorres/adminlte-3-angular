@@ -78,7 +78,6 @@
         "ban-keywords",
         "check-format",
         "allow-pascal-case",
-        true,
         "allow-leading-underscore"
       ]
     },
