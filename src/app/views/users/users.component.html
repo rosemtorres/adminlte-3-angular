@@ -76,9 +76,20 @@
                   <input
                     class="form-control"
                     type="text"
-                    id="status"
+                    placeholder="Choose one"
+                    aria-label="Number"
+                    matInput
                     formControlName="status"
+                    [matAutocomplete]="statusauto"
                   />
+                  <mat-autocomplete #statusauto="matAutocomplete">
+                    <mat-option
+                      *ngFor="let statusoption of statusFilteredOptions | async"
+                      [value]="statusoption"
+                    >
+                      {{ statusoption }}
+                    </mat-option>
+                  </mat-autocomplete>
                 </div>
               </div>
               <div class="form-group row">
@@ -212,19 +223,69 @@
                   />
                 </div>
               </div>
+              <!-- <div class="form-group row">
+								<label class="col-sm-2" for="allowed_assets"
+									>Allowed Assets</label
+								>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										 placeholder="Choose One"
+										 aria-label="Number"
+										 matInput
+										 formControlName="allowed_assets"
+										 [matAutocomplete]="assetsauto">
+									<mat-autocomplete #assetsauto="matAutocomplete">
+										<mat-option *ngFor="let assetsoption of assetsFilteredOptions | async" [value]="assetsoption">
+											{{assetsoption}}
+										</mat-option>
+									</mat-autocomplete>
+								</div>
+							</div> -->
+              <!-- <mat-form-field class="example-chip-list"> -->
+              <!-- <mat-label>Favorite Fruits</mat-label> -->
               <div class="form-group row">
                 <label class="col-sm-2" for="allowed_assets"
                   >Allowed Assets</label
                 >
                 <div class="col-sm-10">
-                  <input
-                    class="form-control"
-                    type="text"
-                    id="allowed_assets"
-                    formControlName="allowed_assets"
-                  />
+                  <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip
+                      *ngFor="let asset of assets"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="remove(asset)"
+                    >
+                      {{ asset }}
+                      <mat-icon matChipRemove *ngIf="removable"
+                        >cancel</mat-icon
+                      >
+                    </mat-chip>
+                    <input
+                      placeholder="Choose asset..."
+                      #fruitInput
+                      formControlName="allowed_assets"
+                      [matAutocomplete]="auto"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="add($event)"
+                    />
+                  </mat-chip-list>
+                  <mat-autocomplete
+                    #auto="matAutocomplete"
+                    (optionSelected)="selected($event)"
+                  >
+                    <mat-option
+                      *ngFor="let asset of assetsFilteredOptions | async"
+                      [value]="asset"
+                    >
+                      {{ asset }}
+                    </mat-option>
+                  </mat-autocomplete>
                 </div>
               </div>
+              <!-- </mat-form-field> -->
             </div>
             <!-- /.card-body -->
           </div>

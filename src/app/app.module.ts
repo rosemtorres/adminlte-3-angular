@@ -10,7 +10,7 @@ import { FooterComponent } from './pages/main/footer/footer.component';
 import { MenuSidebarComponent } from './pages/main/menu-sidebar/menu-sidebar.component';
 import { BlankComponent } from './views/blank/blank.component';
 // import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileComponent } from './views/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './pages/register/register.component';
@@ -26,6 +26,10 @@ import localeEn from '@angular/common/locales/en';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
 import { UsersComponent } from './views/users/users.component';
 import { AssetsComponent } from './views/assets/assets.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -51,7 +55,11 @@ registerLocaleData(localeEn, 'en-EN');
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // FormsModule,
+    MatSliderModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
