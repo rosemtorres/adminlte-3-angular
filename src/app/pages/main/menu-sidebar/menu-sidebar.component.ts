@@ -7,6 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { AppService } from 'src/app/utils/services/app.service';
+declare var $: any;
 
 @Component({
   selector: 'app-menu-sidebar',

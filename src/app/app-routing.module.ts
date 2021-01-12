@@ -6,6 +6,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { UsersComponent } from './views/users/users.component';
+import { AssetsComponent } from './views/assets/assets.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
 
@@ -28,6 +30,14 @@ const routes: Routes = [
         path: '',
         component: DashboardComponent,
       },
+      {
+        path: 'users',
+        component: UsersComponent,
+      },
+      {
+        path: 'assets',
+        component: AssetsComponent,
+      },
     ],
   },
   {
@@ -44,7 +54,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
