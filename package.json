@@ -19,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && ng lint && lint-staged"
+      "pre-commit": "pretty-quick --staged && ng lint && lint-staged && npm run lint"
     }
   },
   "dependencies": {
