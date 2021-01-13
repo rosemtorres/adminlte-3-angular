@@ -13,54 +13,54 @@ import { NonAuthGuard } from './utils/guards/non-auth.guard';
 import { UserViewComponent } from './views/users/user-view/user-view.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: MainComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
-    children: [
-      {
-        path: 'profile',
-        component: ProfileComponent,
-      },
-      {
-        path: 'blank',
-        component: BlankComponent,
-      },
-      {
-        path: '',
-        component: DashboardComponent,
-      },
-      {
-        path: 'users',
-        component: UsersComponent,
-      },
+	{
+		path: '',
+		component: MainComponent,
+		canActivate: [AuthGuard],
+		canActivateChild: [AuthGuard],
+		children: [
+			{
+				path: 'profile',
+				component: ProfileComponent,
+			},
+			{
+				path: 'blank',
+				component: BlankComponent,
+			},
+			{
+				path: '',
+				component: DashboardComponent,
+			},
+			{
+				path: 'users',
+				component: UserViewComponent,
+			},
 
-      {
-        path: 'users/view',
-        component: UserViewComponent
-      },
-      {
-        path: 'assets',
-        component: AssetsComponent,
-      },
-    ],
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [NonAuthGuard],
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    canActivate: [NonAuthGuard],
-  },
-  { path: '**', redirectTo: '' },
+			{
+				path: 'users/create',
+				component: UsersComponent
+			},
+			{
+				path: 'assets',
+				component: AssetsComponent,
+			},
+		],
+	},
+	{
+		path: 'login',
+		component: LoginComponent,
+		canActivate: [NonAuthGuard],
+	},
+	{
+		path: 'register',
+		component: RegisterComponent,
+		canActivate: [NonAuthGuard],
+	},
+	{ path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule],
+	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+	exports: [RouterModule],
 })
 export class AppRoutingModule {}
