@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
 			memory: new FormControl(null),
 			processor: new FormControl(null),
 			purchase_value: new FormControl(null),
-			allowed_assets: new FormControl(null),
+			allowed_asset: new FormControl(null),
 		});
 	}
 
