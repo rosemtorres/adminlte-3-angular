@@ -43,4 +43,8 @@ export class UserService {
 	getUsers() {
 		return this.users;
 	}
+
+	getUser(index:number) {
+		return this.users[index];
+	}
 }

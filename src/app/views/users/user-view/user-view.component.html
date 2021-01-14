@@ -17,11 +17,11 @@
 						</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let user of users">
-								<td>{{user.sam_account_name}}</td>
+							<tr *ngFor="let user of users; let i = index">
+								<td>{{user.sam_account_name}}{{i}}</td>
 								<td>{{user.first_name}}</td>
 								<td>{{user.last_name}}</td>
-								<td><a href="#">View</a></td>
+								<td><a [routerLink]="[i]">View</a></td>
 							</tr>
 						</tbody>
 					</table>
