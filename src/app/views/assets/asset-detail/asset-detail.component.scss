@@ -1,0 +1,8 @@
+.row {
+	div {
+		border-bottom: 1px solid #e4e1e1;
+		&.col-sm-3 {
+			text-align: right;
+		}
+	}
+}

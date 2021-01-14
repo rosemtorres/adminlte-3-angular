@@ -44,6 +44,10 @@ export class AssetService{
 	getAssets() {
 		return this.assets;
 	}
+
+	getAsset(index:number) {
+		return this.assets[index];
+	}
 }
 
 
