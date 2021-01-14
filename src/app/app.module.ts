@@ -33,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserViewComponent } from './views/users/user-view/user-view.component';
 import { UserDetailComponent } from './views/users/user-detail/user-detail.component';
 import { AssetViewComponent } from './views/assets/asset-view/asset-view.component';
+import { AssetDetailComponent } from './views/assets/asset-detail/asset-detail.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -57,6 +58,7 @@ registerLocaleData(localeEn, 'en-EN');
     UserViewComponent,
     UserDetailComponent,
     AssetViewComponent,
+    AssetDetailComponent,
   ],
   imports: [
     BrowserModule,
