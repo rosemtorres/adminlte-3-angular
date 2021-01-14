@@ -1,85 +1,85 @@
 <aside #mainSidebar class="main-sidebar sidebar-dark-primary elevation-4">
-  <!-- Brand Logo -->
-  <a [routerLink]="['/']" class="brand-link">
-    <img
-      src="assets/img/schiavello-logo.jpg"
-      alt="Shiavello Logo"
-      class="brand-image elevation-3 full-logo"
-    />
-    <img
-      src="assets/img/schiavello-short-logo.jpg"
-      alt="Shiavello Logo"
-      class="brand-image elevation-3 short-logo"
-    />
-  </a>
+	<!-- Brand Logo -->
+	<a [routerLink]="['/']" class="brand-link">
+		<img
+			src="assets/img/schiavello-logo.jpg"
+			alt="Shiavello Logo"
+			class="brand-image elevation-3 full-logo"
+		/>
+		<img
+			src="assets/img/schiavello-short-logo.jpg"
+			alt="Shiavello Logo"
+			class="brand-image elevation-3 short-logo"
+		/>
+	</a>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <!-- Sidebar Menu -->
-    <nav class="mt-2">
-      <ul
-        class="nav nav-pills nav-sidebar flex-column"
-        data-widget="treeview"
-        role="menu"
-        data-accordion="false"
-      >
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-        <li class="nav-item">
-          <a [routerLink]="['/']" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
-            <p>
-              Users
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a [routerLink]="['users']" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Users List</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a [routerLink]="['/users/create']" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Create New User</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item has-treeview">
-          <a class="nav-link">
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              IT Assets
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a [routerLink]="['/assets']" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Assets Lists</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a [routerLink]="['/assets']" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Create New Assets</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.sidebar-menu -->
-  </div>
-  <!-- /.sidebar -->
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<!-- Sidebar Menu -->
+		<nav class="mt-2">
+			<ul
+				class="nav nav-pills nav-sidebar flex-column"
+				data-widget="treeview"
+				role="menu"
+				data-accordion="false"
+			>
+				<!-- Add icons to the links using the .nav-icon class
+						 with font-awesome or any other icon font library -->
+				<li class="nav-item">
+					<a [routerLink]="['/']" class="nav-link">
+						<i class="nav-icon fas fa-chart-pie"></i>
+						<p>Dashboard</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">
+						<i class="nav-icon fas fa-users"></i>
+						<p>
+							Users
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLink]="['users']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Users List</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLink]="['/users/create']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Create New User</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview">
+					<a class="nav-link">
+						<i class="nav-icon fas fa-book"></i>
+						<p>
+							IT Assets
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a [routerLink]="['/assets']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Assets Lists</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a [routerLink]="['/assets/create']" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Create New Assets</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<!-- /.sidebar-menu -->
+	</div>
+	<!-- /.sidebar -->
 </aside>

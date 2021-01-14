@@ -12,6 +12,7 @@ import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
 import { UserViewComponent } from './views/users/user-view/user-view.component';
 import { UserDetailComponent } from './views/users/user-detail/user-detail.component';
+import { AssetViewComponent } from './views/assets/asset-view/asset-view.component';
 
 const routes: Routes = [
 	{
@@ -45,10 +46,13 @@ const routes: Routes = [
 					},
 				]
 			},
-
+			{
+				path: 'assets/create',
+				component: AssetsComponent,
+			},
 			{
 				path: 'assets',
-				component: AssetsComponent,
+				component: AssetViewComponent
 			},
 		],
 	},
