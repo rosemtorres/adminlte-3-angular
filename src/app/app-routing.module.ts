@@ -11,6 +11,7 @@ import { AssetsComponent } from './views/assets/assets.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
 import { UserViewComponent } from './views/users/user-view/user-view.component';
+import { UserDetailComponent } from './views/users/user-detail/user-detail.component';
 
 const routes: Routes = [
 	{
@@ -32,14 +33,19 @@ const routes: Routes = [
 				component: DashboardComponent,
 			},
 			{
-				path: 'users',
-				component: UserViewComponent,
-			},
-
-			{
 				path: 'users/create',
 				component: UsersComponent
 			},
+			{
+				path: 'users',
+				component: UserViewComponent, children: [
+					{
+						path: ':id',
+						component: UserDetailComponent
+					},
+				]
+			},
+
 			{
 				path: 'assets',
 				component: AssetsComponent,

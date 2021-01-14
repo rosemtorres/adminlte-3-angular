@@ -31,6 +31,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { UserViewComponent } from './views/users/user-view/user-view.component';
+import { UserDetailComponent } from './views/users/user-detail/user-detail.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -53,6 +54,7 @@ registerLocaleData(localeEn, 'en-EN');
     UsersComponent,
     AssetsComponent,
     UserViewComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
