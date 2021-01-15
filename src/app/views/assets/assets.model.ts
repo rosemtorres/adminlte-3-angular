@@ -1,5 +1,6 @@
 export class AssetModel {
 	constructor(
+		public service_id: number,
 		public service: string,
 		public capex_opex: string,
 		public license_rented_owned: string,
@@ -17,5 +18,6 @@ export class AssetModel {
 		public total_volume_in_of_licenses: string,
 		public available_licenses: string,
 		public notes: string,
+		public date_created: string,
 	) {}
 }

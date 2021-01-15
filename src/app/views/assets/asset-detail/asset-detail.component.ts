@@ -17,10 +17,13 @@ export class AssetDetailComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		this.assetDetail = new AssetModel(0,'','','','','','','','','','','','','','','','','','');
 		this.route.params.subscribe(
 			(params:Params)=>{
 				this.id = +params['id'];
-				this.assetDetail = this.assetService.getAsset(this.id);
+				this.assetService.getAsset(this.id).subscribe((posts)=>{
+					this.assetDetail = posts[0];
+				});
 			}
 		)
 	}

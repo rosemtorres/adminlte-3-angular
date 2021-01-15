@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AssetService } from './assets.service';
 declare let $: any;
 
 @Component({
@@ -8,6 +9,8 @@ declare let $: any;
 	styleUrls: ['./assets.component.scss'],
 })
 export class AssetsComponent implements OnInit {
+	constructor(private assetService:AssetService){}
+	serviceCreated:boolean = false;
 
 	assetForm: FormGroup;
 	objectKeys = Object.keys;
@@ -31,7 +34,7 @@ export class AssetsComponent implements OnInit {
 
 	ngOnInit(): void {
 		$('.select2').select2();
-		$('[ data-inputmask]').inputmask();
+		// $('[ data-inputmask]').inputmask();
 
 		this.assetForm = new FormGroup ({
 			service: new FormControl(null),
@@ -55,6 +58,10 @@ export class AssetsComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.assetForm);
+		this.assetService.createAsset(this.assetForm.value).subscribe((responseData)=>{
+			if(responseData === true) {
+				this.serviceCreated = true;
+			}
+		});;
 	}
 }

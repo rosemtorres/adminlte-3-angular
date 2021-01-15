@@ -26,6 +26,7 @@
 			(ngSubmit)="onSubmit()"
 		>
 			<div class="row">
+				<div class="col-sm-12" *ngIf="serviceCreated"><div class="alert alert-success">We got you covered :)</div></div>
 				<div class="col-md-6 col-sm-12">
 					<div class="card">
 						<!-- form start -->
@@ -68,7 +69,6 @@
 								</div>
 							</div>
 							<div class="form-group row">
-
 								<label for="depreciation_rate" class="col-sm-3">Depreciation Rate</label>
 								<div class="col-sm-9 input-group">
 									<div class="input-group-prepend">
@@ -77,12 +77,12 @@
 									<input
 										class="form-control"
 										type="text"
-										formControlName="depreciation_rate"
 										id="depreciation_rate"
 										data-inputmask="
 											'rightAlign': false,
 											'alias': 'numeric'
 										"
+										formControlName="depreciation_rate"
 									>
 								</div>
 							</div>

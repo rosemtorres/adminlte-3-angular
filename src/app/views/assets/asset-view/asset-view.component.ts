@@ -7,20 +7,27 @@ declare let $: any;
 	selector: 'app-asset-view',
 	templateUrl: './asset-view.component.html',
 	styleUrls: ['./asset-view.component.scss'],
-	providers: [AssetService],
+	// providers: [AssetService],
 })
 export class AssetViewComponent implements OnInit {
 	assets:AssetModel[];
+	showselect:boolean = true;
 
-	constructor(private assetService:AssetService) { }
+	constructor(
+		private assetService:AssetService,
+	) { }
 
 	ngOnInit(): void {
-		this.assets= this.assetService.getAssets();
+		this.assetService.getAssets()
+		.subscribe((posts)=>{
+			this.assets = posts;
+		});
+
 		setTimeout(()=>{
 			$(()=>{
 				$('#assettable').DataTable();
 			});
-		},1000)
+		},100)
 	}
 
 }
