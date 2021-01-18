@@ -18,11 +18,14 @@ export class UserDetailComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.userDetail = this.userService.getUser(this.id);
+		this.userDetail = new UserModel(0,'','','','','','','','','','','',0,'','','','');
 		this.route.params.subscribe(
 			(params:Params) => {
 				this.id = +params['id'];
-				this.userDetail = this.userService.getUser(this.id);
+				this.userService.getUser(this.id)
+				.subscribe((posts)=>{
+					this.userDetail = posts[0]
+				});
 			}
 		)
 	}

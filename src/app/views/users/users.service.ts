@@ -1,50 +1,37 @@
 import { UserModel } from './users.model';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
-export class UserService {
-	users: UserModel[] = [
-		new UserModel(
-			"aalcoriza",
-			"D0004146",
-			"Heritage Glass Products (Aust) Pty Ltd",
-			"In Use",
-			"Abigael",
-			"Alcoriza",
-			"aalcoriza@heritageglass.com.au",
-			"Hewlett-Packard",
-			"HP Z640 Workstation",
-			"Mini Tower",
-			"11/8/2017",
-			"Microsoft Windows 10 Pro",
-			32768,
-			"Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz [8 core(s) x86_64]",
-			"",
-			""
-		),
-		new UserModel(
-			"awilliams",
-			"L0004025",
-			"Heritage Glass Products (Aust) Pty Ltd",
-			"In Use",
-			"Alan",
-			"Williams",
-			"awilliams@heritageglass.com.au",
-			"LENOVO",
-			"20F90012AU",
-			"Notebook",
-			"2/27/2017",
-			"Microsoft Windows 10 Pro",
-			8192,
-			"Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz [2 core(s) x86_64]",
-			"",
-			""
-		)
-	];
-
+@Injectable({providedIn: 'root'})
+export class UserService{
+	constructor(private http: HttpClient){}
+	users: UserModel[];
 	getUsers() {
-		return this.users;
+		return this.http.get<{[key: string]: UserModel}>('http://localhost/angularapi/?user=get')
+		.pipe(map(responseData => {
+			const postsArray = [];
+			for (const key in responseData) {
+				if(responseData.hasOwnProperty(key)) {
+					postsArray.push({...responseData[key]});
+				}
+			}
+			return postsArray;
+		}))
 	}
 
 	getUser(index:number) {
-		return this.users[index];
+		return this.http.post<{[key: string]: UserModel}>('http://localhost/angularapi/?user=getone',index)
+		.pipe(map(responseData => {
+			const postsArray = [];
+			for (const key in responseData) {
+				postsArray.push({...responseData[key]});
+			}
+			return postsArray;
+		}));
+	}
+
+	createUser(formValues) {
+		return this.http.post('http://localhost/angularapi/?user=create',formValues);
 	}
 }

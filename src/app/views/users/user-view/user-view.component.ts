@@ -15,12 +15,15 @@ export class UserViewComponent implements OnInit {
 	constructor(private userService: UserService) { }
 
 	ngOnInit(): void {
-		this.users = this.userService.getUsers();
+		this.userService.getUsers()
+		.subscribe((posts)=>{
+			this.users = posts;
+		});
 		setTimeout(function () {
 			$(function () {
 				$('#usertable').DataTable();
 			});
-		}, 1000);
+		}, 100);
 	}
 
 }

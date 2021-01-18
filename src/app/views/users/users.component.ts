@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from './users.service';
 declare let $: any;
 
 @Component({
@@ -9,6 +10,11 @@ declare let $: any;
 })
 
 export class UsersComponent implements OnInit {
+	constructor(
+		private userService:UserService,
+	){}
+
+	userCreated: boolean = false;;
 	objectKeys = Object.keys;
 	genders = ['male', 'female'];
 	userForm: FormGroup;
@@ -48,6 +54,11 @@ export class UsersComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.userForm);
+		this.userService.createUser(this.userForm.value)
+		.subscribe((posts)=>{
+			if (posts === true) {
+				this.userCreated = true;
+			}
+		});
 	}
 }
