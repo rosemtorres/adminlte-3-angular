@@ -34,4 +34,8 @@ export class UserService{
 	createUser(formValues) {
 		return this.http.post('http://localhost/angularapi/?user=create',formValues);
 	}
+
+	editUser(formValues) {
+		return this.http.post('http://localhost/angularapi/?user=edit',formValues);
+	}
 }
