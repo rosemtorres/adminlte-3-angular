@@ -216,8 +216,12 @@
 										data-placeholder="Select a State"
 										formControlName="allowed_asset"
 										style="width: 100%">
-										<option value="{{key}}" *ngFor="let key of objectKeys(allowed_asset_vals)">
+										<!-- <option value="{{key}}" *ngFor="let key of objectKeys(allowed_asset_vals)">
 											{{allowed_asset_vals[key]}}
+										</option>
+										 -->
+										<option value="{{allowed_asset_val}}" *ngFor="let allowed_asset_val of allowed_asset_vals">
+											{{allowed_asset_val}}
 										</option>
 									</select>
 								</div>

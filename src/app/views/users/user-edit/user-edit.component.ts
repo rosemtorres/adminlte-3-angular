@@ -3,6 +3,7 @@ import { UserService } from "../users.service";
 import { UserModel } from "../users.model";
 import { ActivatedRoute, Params } from "@angular/router";
 import { FormGroup, FormControl } from '@angular/forms';
+import { AssetService } from '../../assets/assets.service';
 declare let $: any;
 
 @Component({
@@ -25,20 +26,24 @@ export class UserEditComponent implements OnInit {
 	};
 	selectedAllowedAssetsArray = [];
 	
-	allowed_asset_vals = {
-		mac_office:'Mac Office',
-		mac_office_365:'Microsoft Office 365 - en-us',
-		mac_office_2007:'Microsoft Office Word MUI (English) 2007',
-		mac_office_2010:'Microsoft Office Word MUI (English) 2010'
-	};
+	allowed_asset_vals = [];
 
 	constructor(
 		private userService:UserService,
+		private assetService:AssetService,
 		private route:ActivatedRoute
 	) { }
 
 
 	ngOnInit(): void {
+
+		$('.allowed_asset').select2();
+		this.assetService.getAssets().subscribe((datas)=>{
+			for(let data of datas) {
+				this.allowed_asset_vals.push(data.service);
+			}
+		});
+
 		this.route.params.subscribe(
 			(params:Params) => {
 				this.id = +params['id'];
@@ -71,7 +76,6 @@ export class UserEditComponent implements OnInit {
 			}
 		)
 
-		$('.allowed_asset').select2();
 		this.userForm = new FormGroup({
 			user_id: new FormControl(null),
 			sam_account_name: new FormControl(null),
@@ -95,6 +99,7 @@ export class UserEditComponent implements OnInit {
 
 	onSubmit() {
 		this.userForm.patchValue({'allowed_asset': $('.allowed_asset').val().toString()});
+		console.log(this.userForm.value.allowed_asset);
 		this.userService.editUser(this.userForm.value)
 		.subscribe((posts)=>{
 			if (posts === true) {
