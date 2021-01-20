@@ -66,9 +66,6 @@ export class UserEditComponent implements OnInit {
 					});
 
 					this.selectedAllowedAssetsArray = this.userDetail.allowed_asset.split(",");
-					for (let i = 0; i < this.selectedAllowedAssetsArray.length; i++) {
-						this.selectedAllowedAssetsArray[i] = i+": '"+this.selectedAllowedAssetsArray[i]+"'";
-					}
 					$('.allowed_asset').val(this.selectedAllowedAssetsArray).trigger('change');
 				});
 			}
@@ -97,6 +94,7 @@ export class UserEditComponent implements OnInit {
 	}
 
 	onSubmit() {
+		this.userForm.patchValue({'allowed_asset': $('.allowed_asset').val().toString()});
 		this.userService.editUser(this.userForm.value)
 		.subscribe((posts)=>{
 			if (posts === true) {

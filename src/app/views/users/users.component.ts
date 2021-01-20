@@ -54,6 +54,7 @@ export class UsersComponent implements OnInit {
 	}
 
 	onSubmit() {
+		this.userForm.patchValue({'allowed_asset': $('.allowed_asset').val().toString()});
 		this.userService.createUser(this.userForm.value)
 		.subscribe((posts)=>{
 			if (posts === true) {
