@@ -14,7 +14,7 @@ export class UserEditComponent implements OnInit {
 
 	userDetail: UserModel;
 	id: number;
-	userCreated: boolean = false;;
+	userEdited: boolean = false;;
 	objectKeys = Object.keys;
 	genders = ['male', 'female'];
 	userForm: FormGroup;
@@ -39,15 +39,32 @@ export class UserEditComponent implements OnInit {
 
 
 	ngOnInit(): void {
-		this.userDetail = new UserModel(0,'','','','','','','','','','','',0,'','','','');
-
-
 		this.route.params.subscribe(
 			(params:Params) => {
 				this.id = +params['id'];
 				this.userService.getUser(this.id)
 				.subscribe((posts)=>{
 					this.userDetail = posts[0];
+					this.userForm.setValue({
+						'user_id': this.userDetail.user_id,
+						'sam_account_name': this.userDetail.sam_account_name,
+						'computer_name_from_ad': this.userDetail.computer_name_from_ad,
+						'company': this.userDetail.company,
+						'status': this.userDetail.status,
+						'first_name': this.userDetail.first_name,
+						'last_name': this.userDetail.last_name,
+						'email': this.userDetail.email,
+						'manu': this.userDetail.manu,
+						'model': this.userDetail.model,
+						'type': this.userDetail.type,
+						'date_created': this.userDetail.date_created,
+						'os': this.userDetail.os,
+						'memory': this.userDetail.memory,
+						'processor': this.userDetail.processor,
+						'purchase_value': this.userDetail.purchase_value,
+						'allowed_asset': this.userDetail.allowed_asset,
+					});
+
 					this.selectedAllowedAssetsArray = this.userDetail.allowed_asset.split(",");
 					for (let i = 0; i < this.selectedAllowedAssetsArray.length; i++) {
 						this.selectedAllowedAssetsArray[i] = i+": '"+this.selectedAllowedAssetsArray[i]+"'";
@@ -59,7 +76,7 @@ export class UserEditComponent implements OnInit {
 
 		$('.allowed_asset').select2();
 		this.userForm = new FormGroup({
-			user_id: new FormControl(this.userDetail.user_id),
+			user_id: new FormControl(null),
 			sam_account_name: new FormControl(null),
 			computer_name_from_ad: new FormControl(null),
 			company: new FormControl(null),
@@ -80,12 +97,10 @@ export class UserEditComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.userForm.value);
-		return;
 		this.userService.editUser(this.userForm.value)
 		.subscribe((posts)=>{
 			if (posts === true) {
-				this.userCreated = true;
+				this.userEdited = true;
 			}
 		});
 	}
