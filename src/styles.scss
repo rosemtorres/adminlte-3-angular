@@ -15,3 +15,15 @@
   width: 0px;
   background: transparent;
 }
+
+.sidebar-collapse .full-logo {
+  display: none;
+}
+
+.sidebar-open .short-logo {
+  display: none;
+}
+
+.sidebar-dark-primary {
+  background: black;
+}

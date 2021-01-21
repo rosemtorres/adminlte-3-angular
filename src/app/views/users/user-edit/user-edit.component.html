@@ -1,0 +1,260 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Edit  User</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active">Users</li>
+					<li class="breadcrumb-item active">Edit</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<!-- Default box -->
+	<div class="container-fluid">
+		<form
+			class="form-horizontal"
+			[formGroup]="userForm"
+			(ngSubmit)="onSubmit()"
+		>
+			<input type="hidden"  formControlName="user_id">
+			<div class="row">
+				<div class="col-sm-12" *ngIf="userEdited"><div class="alert alert-success">We got you covered :)</div></div>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Profile</h3>
+						</div>
+						<!-- form start -->
+						<div class="card-body">
+							<div class="form-group row">
+								<label class="col-sm-2" for="sam_account_name">Sam Account Name</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="sam_account_name"
+										formControlName="sam_account_name"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="computer_name_from_ad">Computer Name from AD</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="computer_name_from_ad"
+										formControlName="computer_name_from_ad"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="company">Company</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="company"
+										formControlName="company"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="status">Status</label>
+								<div class="col-sm-10">
+									<select
+										class="form-control"
+										id="status"
+										formControlName="status"
+									>
+										<option
+											*ngFor="let key of objectKeys(status_vals)"
+											value="{{key}}"
+										>{{status_vals[key]}}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="first_name">First Name</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="first_name"
+										formControlName="first_name"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="last_name">Last Name</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="last_name"
+										formControlName="last_name"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="email">Email</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="email"
+										formControlName="email"
+										
+									/>
+								</div>
+							</div>
+						</div>
+						<!-- /.card-footer -->
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">Asset Details</div>
+						<div class="card-body">
+							<div class="form-group row">
+								<label class="col-sm-2" for="manu">Manu</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="manu"
+										formControlName="manu"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="model">Model</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="model"
+										formControlName="model"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="type">Type</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="type"
+										formControlName="type"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="date_created">Date Created</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="date_created"
+										formControlName="date_created"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="os">OS</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="os"
+										formControlName="os"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="memory">Memory</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="memory"
+										formControlName="memory"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="processor">Processor</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="processor"
+										formControlName="processor"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="purchase_value">Purchase Value</label>
+								<div class="col-sm-10">
+									<input
+										class="form-control"
+										type="text"
+										id="purchase_value"
+										formControlName="purchase_value"
+										
+									/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2" for="allowed_asset">Allowed Assets</label>
+								<div class="col-sm-10">
+									<select
+										class="allowed_asset"
+										multiple="multiple"
+										data-placeholder="Select a State"
+										formControlName="allowed_asset"
+										style="width: 100%">
+										<option value="{{allowed_asset_val}}"
+										*ngFor="let allowed_asset_val of allowed_asset_vals">
+											{{allowed_asset_val}}
+										</option>
+									</select>
+								</div>
+							</div>
+							<!-- </mat-form-field> -->
+						</div>
+						<!-- /.card-body -->
+					</div>
+				</div>
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-info">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- /.card -->
+</section>
+<!-- /.content -->
