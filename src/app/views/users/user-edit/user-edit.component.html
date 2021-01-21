@@ -3,12 +3,13 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Create User</h1>
+				<h1>Edit  User</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
 					<li class="breadcrumb-item active">Users</li>
+					<li class="breadcrumb-item active">Edit</li>
 				</ol>
 			</div>
 		</div>
@@ -25,8 +26,9 @@
 			[formGroup]="userForm"
 			(ngSubmit)="onSubmit()"
 		>
+			<input type="hidden"  formControlName="user_id">
 			<div class="row">
-				<div class="col-sm-12" *ngIf="userCreated"><div class="alert alert-success">We got you covered :)</div></div>
+				<div class="col-sm-12" *ngIf="userEdited"><div class="alert alert-success">We got you covered :)</div></div>
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-header">
@@ -42,6 +44,7 @@
 										type="text"
 										id="sam_account_name"
 										formControlName="sam_account_name"
+										
 									/>
 								</div>
 							</div>
@@ -53,6 +56,7 @@
 										type="text"
 										id="computer_name_from_ad"
 										formControlName="computer_name_from_ad"
+										
 									/>
 								</div>
 							</div>
@@ -64,6 +68,7 @@
 										type="text"
 										id="company"
 										formControlName="company"
+										
 									/>
 								</div>
 							</div>
@@ -73,8 +78,13 @@
 									<select
 										class="form-control"
 										id="status"
-										formControlName="status">
-										<option *ngFor="let key of objectKeys(status_vals)" value="{{key}}">{{status_vals[key]}}</option>
+										formControlName="status"
+									>
+										<option
+											*ngFor="let key of objectKeys(status_vals)"
+											value="{{key}}"
+										>{{status_vals[key]}}
+										</option>
 									</select>
 								</div>
 							</div>
@@ -86,6 +96,7 @@
 										type="text"
 										id="first_name"
 										formControlName="first_name"
+										
 									/>
 								</div>
 							</div>
@@ -97,6 +108,7 @@
 										type="text"
 										id="last_name"
 										formControlName="last_name"
+										
 									/>
 								</div>
 							</div>
@@ -108,6 +120,7 @@
 										type="text"
 										id="email"
 										formControlName="email"
+										
 									/>
 								</div>
 							</div>
@@ -127,6 +140,7 @@
 										type="text"
 										id="manu"
 										formControlName="manu"
+										
 									/>
 								</div>
 							</div>
@@ -138,6 +152,7 @@
 										type="text"
 										id="model"
 										formControlName="model"
+										
 									/>
 								</div>
 							</div>
@@ -149,6 +164,7 @@
 										type="text"
 										id="type"
 										formControlName="type"
+										
 									/>
 								</div>
 							</div>
@@ -160,6 +176,7 @@
 										type="text"
 										id="date_created"
 										formControlName="date_created"
+										
 									/>
 								</div>
 							</div>
@@ -171,6 +188,7 @@
 										type="text"
 										id="os"
 										formControlName="os"
+										
 									/>
 								</div>
 							</div>
@@ -182,6 +200,7 @@
 										type="text"
 										id="memory"
 										formControlName="memory"
+										
 									/>
 								</div>
 							</div>
@@ -193,6 +212,7 @@
 										type="text"
 										id="processor"
 										formControlName="processor"
+										
 									/>
 								</div>
 							</div>
@@ -204,6 +224,7 @@
 										type="text"
 										id="purchase_value"
 										formControlName="purchase_value"
+										
 									/>
 								</div>
 							</div>
@@ -216,11 +237,8 @@
 										data-placeholder="Select a State"
 										formControlName="allowed_asset"
 										style="width: 100%">
-										<!-- <option value="{{key}}" *ngFor="let key of objectKeys(allowed_asset_vals)">
-											{{allowed_asset_vals[key]}}
-										</option>
-										 -->
-										<option value="{{allowed_asset_val}}" *ngFor="let allowed_asset_val of allowed_asset_vals">
+										<option value="{{allowed_asset_val}}"
+										*ngFor="let allowed_asset_val of allowed_asset_vals">
 											{{allowed_asset_val}}
 										</option>
 									</select>

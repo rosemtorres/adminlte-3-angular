@@ -14,6 +14,7 @@ import { UserViewComponent } from './views/users/user-view/user-view.component';
 import { UserDetailComponent } from './views/users/user-detail/user-detail.component';
 import { AssetViewComponent } from './views/assets/asset-view/asset-view.component';
 import { AssetDetailComponent } from './views/assets/asset-detail/asset-detail.component';
+import { UserEditComponent }  from './views/users/user-edit/user-edit.component';
 
 const routes: Routes = [
 	{
@@ -37,6 +38,10 @@ const routes: Routes = [
 			{
 				path: 'users/create',
 				component: UsersComponent
+			},
+			{
+				path: 'users/edit/:id',
+				component: UserEditComponent
 			},
 			{
 				path: 'users',

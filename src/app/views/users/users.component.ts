@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from './users.service';
+import { AssetService } from '../assets/assets.service';
 declare let $: any;
 
 @Component({
@@ -9,6 +11,12 @@ declare let $: any;
 })
 
 export class UsersComponent implements OnInit {
+	constructor(
+		private userService:UserService,
+		private assetService:AssetService,
+	){}
+
+	userCreated: boolean = false;;
 	objectKeys = Object.keys;
 	genders = ['male', 'female'];
 	userForm: FormGroup;
@@ -17,15 +25,15 @@ export class UsersComponent implements OnInit {
 		in_use: 'In Use',
 		spare: 'Spare'
 	};
-	
-	allowed_asset_vals = {
-		mac_office:'Mac Office',
-		mac_office_365:'Microsoft Office 365 - en-us',
-		mac_office_2007:'Microsoft Office Word MUI (English) 2007',
-		mac_office_2010:'Microsoft Office Word MUI (English) 2010'
-	};
+	allowed_asset_vals = [];
 
 	ngOnInit() {
+		this.assetService.getAssets().subscribe((datas)=>{
+			for(let data of datas) {
+				this.allowed_asset_vals.push(data.service);
+			}
+		});
+
 		$('.allowed_asset').select2();
 		this.userForm = new FormGroup({
 			sam_account_name: new FormControl(null),
@@ -48,6 +56,12 @@ export class UsersComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.userForm);
+		this.userForm.patchValue({'allowed_asset': $('.allowed_asset').val().toString()});
+		this.userService.createUser(this.userForm.value)
+		.subscribe((posts)=>{
+			if (posts === true) {
+				this.userCreated = true;
+			}
+		});
 	}
 }

@@ -34,6 +34,8 @@ import { UserViewComponent } from './views/users/user-view/user-view.component';
 import { UserDetailComponent } from './views/users/user-detail/user-detail.component';
 import { AssetViewComponent } from './views/assets/asset-view/asset-view.component';
 import { AssetDetailComponent } from './views/assets/asset-detail/asset-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserEditComponent } from './views/users/user-edit/user-edit.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -59,6 +61,7 @@ registerLocaleData(localeEn, 'en-EN');
     UserDetailComponent,
     AssetViewComponent,
     AssetDetailComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +79,7 @@ registerLocaleData(localeEn, 'en-EN');
       preventDuplicates: true,
     }),
     NgbModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -14,6 +14,7 @@
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th></th>
+							<th></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -21,7 +22,8 @@
 								<td>{{user.sam_account_name}}{{i}}</td>
 								<td>{{user.first_name}}</td>
 								<td>{{user.last_name}}</td>
-								<td><a [routerLink]="[i]">View</a></td>
+								<td><a [routerLink]="[user.user_id]">View</a></td>
+								<td><a [routerLink]="['edit',user.user_id]">Edit</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -31,14 +33,14 @@
 			<!-- /.card -->
 		</div>
 		<!-- /.col -->
-		<div class="col-sm-12 col-md-6">
+		<div class="col-sm-12 col-md-6" [hidden]="!myOutlet.isActivated">
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">Details</h3>
 				</div>
 				<div class="card-body">
 					<!-- <p>Please choose a user to check the details</p> -->
-					<router-outlet></router-outlet>
+					<router-outlet #myOutlet="outlet"></router-outlet>
 				</div>
 			</div>
 		</div>

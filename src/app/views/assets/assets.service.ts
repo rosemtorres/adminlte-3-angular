@@ -1,83 +1,37 @@
 import { AssetModel } from './assets.model';
-export class AssetService{
-	assets: AssetModel[] = [
-		new AssetModel(
-			"Microsoft Office 365 - en-us",
-			"Opex",
-			"Rented",
-			"",
-			"",
-			" Indivdual Company",
-			" Active",
-			"Yes",
-			"1",
-			"12",
-			"",
-			"",
-			"1",
-			"$ -   ",
-			"1",
-			"0",
-			"",
-		),
-		new AssetModel(
-			"MS CORE CAL",
-			"Opex",
-			"Owned",
-			"",
-			"",
-			"Group",
-			"Active",
-			"Yes",
-			"12",
-			"36",
-			"2021",
-			"$ 300,000 ",
-			"630",
-			"$ 158.73 ",
-			"617",
-			"-13",
-			""
-		)
-	];
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
+@Injectable({providedIn: 'root'})
+export class AssetService{
+	constructor(private http: HttpClient){}
+	assets: AssetModel[];
 	getAssets() {
-		return this.assets;
+		return this.http.get<{[key: string]: AssetModel}>('http://localhost/angularapi/?service=get')
+		.pipe(map(responseData => {
+			const postsArray = [];
+			for (const key in responseData) {
+				if(responseData.hasOwnProperty(key)) {
+					postsArray.push({...responseData[key]});
+				}
+			}
+			return postsArray;
+		}))
 	}
 
 	getAsset(index:number) {
-		return this.assets[index];
+		return this.http.post<{[key: string]: AssetModel}>('http://localhost/angularapi/?service=getone',index)
+		.pipe(map(responseData => {
+			const postsArray = [];
+			for (const key in responseData) {
+				postsArray.push({...responseData[key]});
+			}
+			return postsArray;
+		}));
+	}
+
+	createAsset(formValues) {
+		return this.http.post('http://localhost/angularapi/?service=create',formValues);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
