@@ -1,324 +1,417 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-	<div class="container-fluid">
-		<div class="row mb-2">
-			<div class="col-sm-6">
-				<h1>Create Asset</h1>
-			</div>
-			<div class="col-sm-6">
-				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active">Create Asset</li>
-				</ol>
-			</div>
-		</div>
-	</div>
-	<!-- /.container-fluid -->
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Create Asset</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Create Asset</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
 </section>
 
 <!-- Main content -->
 <section class="content">
-	<!-- Default box -->
-	<div class="container-fluid">
-		<form
-			class="form-horizontal"
-			[formGroup]="assetForm"
-			(ngSubmit)="onSubmit()"
-		>
-			<div class="row">
-				<div class="col-sm-12" *ngIf="serviceCreated"><div class="alert alert-success">We got you covered :)</div></div>
-				<div class="col-md-6 col-sm-12">
-					<div class="card">
-						<!-- form start -->
-						<div class="card-body">
-							<div class="form-group row">
-								<label for="service" class="col-sm-3">Service</label>
-								<div class="col-sm-9">
-									<input
-										class="form-control"
-										type="text"
-										formControlName="service"
-										id="service"
-									>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="capex_opex" class="col-sm-3">Capex / Opex</label>
-								<div class="col-sm-9">
-									<div class="row">
-										<div class="col-sm-2" *ngFor="let key of objectKeys(capex_opex_vals)">
-											<div class="custom-control custom-radio">
-												<input class="custom-control-input" type="radio" id="{{key}}" formControlName="capex_opex" value="{{key}}">
-												<label for="{{key}}" class="custom-control-label">{{capex_opex_vals[key]}}</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="license_rented_owned" class="col-sm-3">License rented /owned</label>
-								<div class="col-sm-9">
-									<div class="row">
-										<div class="col-sm-2" *ngFor="let key of objectKeys(license_rented_owned_vals)">
-											<div class="custom-control custom-radio">
-												<input class="custom-control-input" type="radio" id="{{key}}" formControlName="license_rented_owned" value="{{key}}">
-												<label for="{{key}}" class="custom-control-label">{{license_rented_owned_vals[key]}}</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="depreciation_rate" class="col-sm-3">Depreciation Rate</label>
-								<div class="col-sm-9 input-group">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><i class="fas fa-percent"></i></span>
-									</div>
-									<input
-										class="form-control"
-										type="text"
-										id="depreciation_rate"
-										data-inputmask="
+  <!-- Default box -->
+  <div class="container-fluid">
+    <form
+      class="form-horizontal"
+      [formGroup]="assetForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="row">
+        <div class="col-sm-12" *ngIf="serviceCreated">
+          <div class="alert alert-success">We got you covered :)</div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="card">
+            <!-- form start -->
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="service" class="col-sm-3">Service</label>
+                <div class="col-sm-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="service"
+                    id="service"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="capex_opex" class="col-sm-3">Capex / Opex</label>
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div
+                      class="col-sm-2"
+                      *ngFor="let key of objectKeys(capex_opex_vals)"
+                    >
+                      <div class="custom-control custom-radio">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          id="{{ key }}"
+                          formControlName="capex_opex"
+                          value="{{ key }}"
+                        />
+                        <label for="{{ key }}" class="custom-control-label">{{
+                          capex_opex_vals[key]
+                        }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="license_rented_owned" class="col-sm-3"
+                  >License rented /owned</label
+                >
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div
+                      class="col-sm-2"
+                      *ngFor="let key of objectKeys(license_rented_owned_vals)"
+                    >
+                      <div class="custom-control custom-radio">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          id="{{ key }}"
+                          formControlName="license_rented_owned"
+                          value="{{ key }}"
+                        />
+                        <label for="{{ key }}" class="custom-control-label">{{
+                          license_rented_owned_vals[key]
+                        }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="depreciation_rate" class="col-sm-3"
+                  >Depreciation Rate</label
+                >
+                <div class="col-sm-9 input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="fas fa-percent"></i
+                    ></span>
+                  </div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="depreciation_rate"
+                    data-inputmask="
 											'rightAlign': false,
 											'alias': 'numeric'
 										"
-										formControlName="depreciation_rate"
-									>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="cost_per_license" class="col-sm-3">Cost per License</label>
-								<div class="col-sm-9 input-group">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-									</div>
-									<input
-										class="form-control"
-										type="text"
-										formControlName="cost_per_license"
-										id="cost_per_license"
-										data-inputmask="
+                    formControlName="depreciation_rate"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="cost_per_license" class="col-sm-3"
+                  >Cost per License</label
+                >
+                <div class="col-sm-9 input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="fas fa-dollar-sign"></i
+                    ></span>
+                  </div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="cost_per_license"
+                    id="cost_per_license"
+                    data-inputmask="
 											'rightAlign': false,
 											'alias': 'numeric'
 										"
-									>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="owned_by_group_or_individual_company" class="col-sm-3">Owned By Group or Individual Company</label>
-								<div class="col-sm-9">
-									<div class="row">
-										<div class="col-sm-2" *ngFor="let key of objectKeys(owned_by_group_or_individual_company_vals)">
-											<div class="custom-control custom-radio">
-												<input class="custom-control-input" type="radio" id="{{key}}" formControlName="owned_by_group_or_individual_company" value="{{key}}">
-												<label for="{{key}}" class="custom-control-label">{{owned_by_group_or_individual_company_vals[key]}}</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="maintenace_status" class="col-sm-3">Maintenace Status</label>
-								<div class="col-sm-9">
-									<div class="row">
-										<div class="col-sm-2" *ngFor="let key of objectKeys(maintenace_status_vals)">
-											<div class="custom-control custom-radio">
-												<input class="custom-control-input" type="radio" id="{{key}}" formControlName="maintenace_status" value="{{key}}">
-												<label for="{{key}}" class="custom-control-label">{{maintenace_status_vals[key]}}</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="payg" class="col-sm-3">PAYG</label>
-								<div class="col-sm-9">
-									<div class="row">
-										<div class="col-sm-2" *ngFor="let key of objectKeys(payg_vals)">
-											<div class="custom-control custom-radio">
-												<input class="custom-control-input" type="radio" id="{{key}}" formControlName="payg" value="{{key}}">
-												<label for="{{key}}" class="custom-control-label">{{payg_vals[key]}}</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="payment_freq" class="col-sm-3">Payment Freq</label>
-								<div class="col-sm-9">
-									<input
-										class="form-control"
-										type="text"
-										formControlName="payment_freq"
-										id="payment_freq"
-										data-inputmask="
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label
+                  for="owned_by_group_or_individual_company"
+                  class="col-sm-3"
+                  >Owned By Group or Individual Company</label
+                >
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div
+                      class="col-sm-2"
+                      *ngFor="
+                        let key of objectKeys(
+                          owned_by_group_or_individual_company_vals
+                        )
+                      "
+                    >
+                      <div class="custom-control custom-radio">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          id="{{ key }}"
+                          formControlName="owned_by_group_or_individual_company"
+                          value="{{ key }}"
+                        />
+                        <label for="{{ key }}" class="custom-control-label">{{
+                          owned_by_group_or_individual_company_vals[key]
+                        }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="maintenace_status" class="col-sm-3"
+                  >Maintenace Status</label
+                >
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div
+                      class="col-sm-2"
+                      *ngFor="let key of objectKeys(maintenace_status_vals)"
+                    >
+                      <div class="custom-control custom-radio">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          id="{{ key }}"
+                          formControlName="maintenace_status"
+                          value="{{ key }}"
+                        />
+                        <label for="{{ key }}" class="custom-control-label">{{
+                          maintenace_status_vals[key]
+                        }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="payg" class="col-sm-3">PAYG</label>
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div
+                      class="col-sm-2"
+                      *ngFor="let key of objectKeys(payg_vals)"
+                    >
+                      <div class="custom-control custom-radio">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          id="{{ key }}"
+                          formControlName="payg"
+                          value="{{ key }}"
+                        />
+                        <label for="{{ key }}" class="custom-control-label">{{
+                          payg_vals[key]
+                        }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="payment_freq" class="col-sm-3">Payment Freq</label>
+                <div class="col-sm-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="payment_freq"
+                    id="payment_freq"
+                    data-inputmask="
 											'rightAlign': false,
 											'alias': 'numeric', 
 											'allowMinus': true,  
 											'digits': 2, 
 											'max': 999.99
 										"
-									>
-								</div>
-							</div>
-							
-						</div>
-						<!-- /.card-footer -->
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="card card-body">
-						<div class="form-group row">
-							<label for="contract_length" class="col-sm-3">Contract Length</label>
-							<div class="col-sm-9">
-								<input
-									class="form-control"
-									type="text"
-									formControlName="contract_length"
-									id="contract_length"
-									data-inputmask="
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- /.card-footer -->
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="card card-body">
+            <div class="form-group row">
+              <label for="contract_length" class="col-sm-3"
+                >Contract Length</label
+              >
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="contract_length"
+                  id="contract_length"
+                  data-inputmask="
 										'rightAlign': false,
 										'alias': 'numeric', 
 										'allowMinus': true,  
 										'digits': 2, 
 										'max': 999.99
 									"
-								>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="expiry_date" class="col-sm-3">Expiry Date</label>
-							<div class="col-sm-9 input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-								</div>
-								<input
-									class="form-control"
-									type="text"
-									formControlName="expiry_date"
-									id="expiry_date"
-									data-inputmask="'alias': 'datetime','inputFormat': 'yyyy'"
-								>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="total_contract_value" class="col-sm-3">Total Contract Value</label>
-							<div class="col-sm-9 input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-								</div>
-								<input
-									class="form-control"
-									type="text"
-									formControlName="total_contract_value"
-									id="total_contract_value"
-									data-inputmask="
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="expiry_date" class="col-sm-3">Expiry Date</label>
+              <div class="col-sm-9 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="far fa-calendar-alt"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="expiry_date"
+                  id="expiry_date"
+                  data-inputmask="'alias': 'datetime','inputFormat': 'yyyy'"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="total_contract_value" class="col-sm-3"
+                >Total Contract Value</label
+              >
+              <div class="col-sm-9 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-dollar-sign"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="total_contract_value"
+                  id="total_contract_value"
+                  data-inputmask="
 										'rightAlign': false,
 										'alias': 'numeric'
 									"
-								>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="volume_of_users" class="col-sm-3">Volume of Users</label>
-							<div class="col-sm-9">
-								<input
-									class="form-control"
-									type="text"
-									formControlName="volume_of_users"
-									id="volume_of_users"
-									data-inputmask="
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="volume_of_users" class="col-sm-3"
+                >Volume of Users</label
+              >
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="volume_of_users"
+                  id="volume_of_users"
+                  data-inputmask="
 										'rightAlign': false,
 										'alias': 'numeric', 
 										'allowMinus': true,  
 										'digits': 2, 
 										'max': 999.99
 									"
-								>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="per_license_cost_per_year" class="col-sm-3">Per License Cost per year</label>
-							<div class="col-sm-9 input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-								</div>
-								<input
-									class="form-control"
-									type="text"
-									formControlName="per_license_cost_per_year"
-									id="per_license_cost_per_year"
-									data-inputmask="
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="per_license_cost_per_year" class="col-sm-3"
+                >Per License Cost per year</label
+              >
+              <div class="col-sm-9 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-dollar-sign"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="per_license_cost_per_year"
+                  id="per_license_cost_per_year"
+                  data-inputmask="
 										'rightAlign': false,
 										'alias': 'numeric', 
 										'allowMinus': true,  
 										'digits': 2, 
 										'max': 999.99
 									"
-								>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="total_volume_in_of_licenses" class="col-sm-3">Total volume in of Licenses</label>
-							<div class="col-sm-9">
-								<input
-									class="form-control"
-									type="text"
-									formControlName="total_volume_in_of_licenses"
-									id="total_volume_in_of_licenses"
-									data-inputmask="
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="total_volume_in_of_licenses" class="col-sm-3"
+                >Total volume in of Licenses</label
+              >
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="total_volume_in_of_licenses"
+                  id="total_volume_in_of_licenses"
+                  data-inputmask="
 										'rightAlign': false,
 										'alias': 'numeric', 
 										'allowMinus': true,  
 										'digits': 2, 
 										'max': 999.99
 									"
-								>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="available_licenses" class="col-sm-3">Available Licenses</label>
-							<div class="col-sm-9">
-								<input
-									class="form-control"
-									type="text"
-									formControlName="available_licenses"
-									id="available_licenses"
-									data-inputmask="
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="available_licenses" class="col-sm-3"
+                >Available Licenses</label
+              >
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="available_licenses"
+                  id="available_licenses"
+                  data-inputmask="
 										'rightAlign': false,
 										'alias': 'numeric', 
 										'allowMinus': true,  
 										'digits': 2, 
 										'max': 999.99
 									"
-								>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="notes" class="col-sm-3">Notes</label>
-							<div class="col-sm-9">
-								<textarea
-									class="form-control"
-									type="text"
-									formControlName="notes"
-									id="notes"
-								>
-							</textarea>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<button type="submit" class="btn btn-info">Submit</button>
-				</div>
-			</div>
-		</form>
-	</div>
-	<!-- /.card -->
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="notes" class="col-sm-3">Notes</label>
+              <div class="col-sm-9">
+                <textarea
+                  class="form-control"
+                  type="text"
+                  formControlName="notes"
+                  id="notes"
+                >
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- /.card -->
 </section>
 <!-- /.content -->
 
 <script>
-	$(document).ready(function() {
-	});
+  $(document).ready(function () {});
 </script>

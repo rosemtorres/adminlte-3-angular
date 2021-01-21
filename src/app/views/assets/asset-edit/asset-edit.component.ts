@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AssetService } from './assets.service';
+import { AssetService } from '../assets.service';
+import { AssetModel } from '../assets.model';
+import { ActivatedRoute, Params } from '@angular/router';
 declare let $: any;
 
-@Component({
-	selector: 'app-assets',
-	templateUrl: './assets.component.html',
-	styleUrls: ['./assets.component.scss'],
-})
-export class AssetsComponent implements OnInit {
-	constructor(private assetService: AssetService) {}
-	serviceCreated: boolean = false;
 
+@Component({
+	selector: 'app-asset-edit',
+	templateUrl: './asset-edit.component.html',
+	styleUrls: ['./asset-edit.component.scss']
+})
+export class AssetEditComponent implements OnInit {
+	constructor(
+		private assetService: AssetService,
+		private route: ActivatedRoute,
+	) {}
+	serviceEdited: boolean = false;
+	assetDetail: AssetModel;
 	assetForm: FormGroup;
 	objectKeys = Object.keys;
 	service_vals = [];
@@ -34,12 +40,41 @@ export class AssetsComponent implements OnInit {
 	total_volume_in_of_licenses_vals = [];
 	available_licenses_vals = [];
 	notes_vals = [];
+	id: number;
 
 	ngOnInit(): void {
 		$('.select2').select2();
 		// $('[ data-inputmask]').inputmask();
 
+		this.route.params.subscribe((params: Params)=>{
+			this.id = +params['id'];
+			this.assetService.getAsset(this.id).subscribe((responseData)=>{
+				this.assetDetail = responseData[0];
+				this.assetForm.setValue({
+					service_id: this.assetDetail.service_id,
+					service: this.assetDetail.service,
+					capex_opex: this.assetDetail.capex_opex,
+					license_rented_owned: this.assetDetail.license_rented_owned,
+					depreciation_rate: this.assetDetail.depreciation_rate,
+					cost_per_license: this.assetDetail.cost_per_license,
+					owned_by_group_or_individual_company: this.assetDetail.owned_by_group_or_individual_company,
+					maintenace_status: this.assetDetail.maintenace_status,
+					payg: this.assetDetail.payg,
+					payment_freq: this.assetDetail.payment_freq,
+					contract_length: this.assetDetail.contract_length,
+					expiry_date: this.assetDetail.expiry_date,
+					total_contract_value: this.assetDetail.total_contract_value,
+					volume_of_users: this.assetDetail.volume_of_users,
+					per_license_cost_per_year: this.assetDetail.per_license_cost_per_year,
+					total_volume_in_of_licenses: this.assetDetail.total_volume_in_of_licenses,
+					available_licenses: this.assetDetail.available_licenses,
+					notes: this.assetDetail.notes,
+				});
+			});
+		});
+
 		this.assetForm = new FormGroup({
+			service_id: new FormControl(null),
 			service: new FormControl(null),
 			capex_opex: new FormControl(null),
 			license_rented_owned: new FormControl(null),
@@ -62,11 +97,12 @@ export class AssetsComponent implements OnInit {
 
 	onSubmit() {
 		this.assetService
-			.createAsset(this.assetForm.value)
+			.editAsset(this.assetForm.value)
 			.subscribe((responseData) => {
 				if (responseData === true) {
-					this.serviceCreated = true;
+					this.serviceEdited = true;
 				}
 			});
 	}
+
 }

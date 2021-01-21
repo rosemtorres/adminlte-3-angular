@@ -14,74 +14,81 @@ import { UserViewComponent } from './views/users/user-view/user-view.component';
 import { UserDetailComponent } from './views/users/user-detail/user-detail.component';
 import { AssetViewComponent } from './views/assets/asset-view/asset-view.component';
 import { AssetDetailComponent } from './views/assets/asset-detail/asset-detail.component';
-import { UserEditComponent }  from './views/users/user-edit/user-edit.component';
+import { UserEditComponent } from './views/users/user-edit/user-edit.component';
+import { AssetEditComponent } from './views/assets/asset-edit/asset-edit.component';
 
 const routes: Routes = [
-	{
-		path: '',
-		component: MainComponent,
-		canActivate: [AuthGuard],
-		canActivateChild: [AuthGuard],
-		children: [
-			{
-				path: 'profile',
-				component: ProfileComponent,
-			},
-			{
-				path: 'blank',
-				component: BlankComponent,
-			},
-			{
-				path: '',
-				component: DashboardComponent,
-			},
-			{
-				path: 'users/create',
-				component: UsersComponent
-			},
-			{
-				path: 'users/edit/:id',
-				component: UserEditComponent
-			},
-			{
-				path: 'users',
-				component: UserViewComponent, children: [
-					{
-						path: ':id',
-						component: UserDetailComponent
-					},
-				]
-			},
-			{
-				path: 'assets/create',
-				component: AssetsComponent,
-			},
-			{
-				path: 'assets',
-				component: AssetViewComponent, children: [
-					{
-						path: ':id',
-						component: AssetDetailComponent,
-					}
-				]
-			},
-		],
-	},
-	{
-		path: 'login',
-		component: LoginComponent,
-		canActivate: [NonAuthGuard],
-	},
-	{
-		path: 'register',
-		component: RegisterComponent,
-		canActivate: [NonAuthGuard],
-	},
-	{ path: '**', redirectTo: '' },
+  {
+    path: '',
+    component: MainComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'blank',
+        component: BlankComponent,
+      },
+      {
+        path: '',
+        component: DashboardComponent,
+      },
+      {
+        path: 'users/create',
+        component: UsersComponent,
+      },
+      {
+        path: 'users/edit/:id',
+        component: UserEditComponent,
+      },
+      {
+        path: 'users',
+        component: UserViewComponent,
+        children: [
+          {
+            path: ':id',
+            component: UserDetailComponent,
+          },
+        ],
+      },
+      {
+        path: 'assets/create',
+        component: AssetsComponent,
+      },
+      {
+        path: 'assets/edit/:id',
+        component: AssetEditComponent,
+      },
+      {
+        path: 'assets',
+        component: AssetViewComponent,
+        children: [
+          {
+            path: ':id',
+            component: AssetDetailComponent,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [NonAuthGuard],
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [NonAuthGuard],
+  },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-	exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
